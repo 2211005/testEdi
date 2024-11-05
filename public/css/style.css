@@ -1,0 +1,483 @@
+/* Estilo general */
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Sidebar */
+.main-sidebar {
+    background-color: #f8f9fa;
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.main-sidebar-open {
+    transform: translateX(0);
+}
+
+/* Botón de menú (para abrir/cerrar sidebar en pantallas pequeñas) */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+@media (min-width: 992px) {
+    .main-sidebar {
+        display: block; /* Mantiene el sidebar visible en pantallas grandes */
+    }
+
+    .mobile-sidebar {
+        display: none; /* Oculta el sidebar móvil en pantallas grandes */
+    }
+
+    .main-content {
+        margin-left: 270px; /* Espacio para sidebar en pantallas grandes */
+    }
+}
+/* Oculta el sidebar en pantallas medianas y pequeñas */
+@media (max-width: 991px) {
+    .main-sidebar {
+        display: none; /* Oculta el sidebar principal */
+    }
+
+    .mobile-sidebar {
+        display: block; /* Muestra el sidebar móvil al final de la página */
+    }
+
+    .main-content {
+        margin-left: 0; /* Remueve el margen dejado por el sidebar */
+    }
+}
+
+/* Botón de cerrar dentro de la sidebar (solo en pantallas pequeñas) */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+@media (min-width: 769px) {
+    .close-btn {
+        display: none; /* Ocultar botón de cerrar en pantallas grandes */
+    }
+
+    .main-sidebar {
+        transform: translateX(0); /* Mantener sidebar abierta en pantallas grandes */
+    }
+}
+
+/* Social Media Icons (ajustes para quitar los óvalos) */
+.social-icons {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    text-align: center;
+}
+
+.social-icons li {
+    display: inline-block;
+}
+
+.social-icons li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10%;
+    background-color: #ddd;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.3s;
+}
+
+.social-icons li a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.social-icons li a span {
+    font-size: 1.5em; /* Ajuste para el tamaño de los íconos */
+    color: #333;
+}
+
+/* Responsividad general */
+@media (min-width: 769px) {
+    .main-sidebar {
+        transform: translateX(0); /* Sidebar visible en pantallas grandes */
+    }
+
+    .menu-toggle {
+        display: none; /* Ocultar botón de menú en pantallas grandes */
+    }
+
+    .main-content {
+        margin-left: 270px; /* Espacio para sidebar en pantallas grandes */
+    }
+}
+
+/* Sidebar del Dashboard */
+.dashboard-sidebar {
+    background-color: #e9ecef;
+    padding: 20px;
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    border-right: 1px solid #ddd;
+}
+
+.dashboard-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dashboard-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.dashboard-sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.dashboard-sidebar ul li a:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    padding-left: 15px;
+}
+
+/* Estilos específicos de responsividad para el dashboard */
+@media (max-width: 768px) {
+    .dashboard-sidebar {
+        transform: translateX(-100%);
+        display: block;
+        z-index: 1000;
+    }
+
+    .menu-toggle-dashboard {
+        display: block;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .dashboard-sidebar-open {
+        transform: translateX(0);
+    }
+}
+
+/* Botón de cerrar sidebar para el dashboard */
+.dashboard-sidebar .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+/* ==================== Contenido principal del dashboard ==================== */
+.dashboard-container {
+    display: flex;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 40px;
+    width: 100%;
+}
+
+/* ==================== Tarjetas interactivas ==================== */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+/* ==================== Estilo de los tips ==================== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
+    gap: 20px;
+    justify-content: center;
+}
+/* Ajusta las tarjetas a dos columnas en pantallas medianas */
+@media (max-width: 991px) {
+    .cards-container {
+        grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas medianas */
+        gap: 15px;
+    }
+}
+
+/* Ajusta las tarjetas a una columna en pantallas pequeñas */
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        gap: 50px;
+    }
+}
+.card-hover-container {
+    position: relative;
+    width: 300px;
+    min-height: 150px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    border: 1px solid #007bff;
+}
+
+.card-hover-content {
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.card-hover-content h3 {
+    margin: 0;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.card-hover-content p {
+    font-size: 1em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* ==================== Botones de toggle para los tips recientes ==================== */
+/* Contenedor del panel de tips */
+.latest-tips-container {
+    position: fixed;
+    top: 20%;
+    right: -300px; /* Oculta el panel fuera de la pantalla hacia la derecha */
+    width: 300px; /* Ancho del panel */
+    height: auto;
+    background-color: #f8f9fa;
+    border-left: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+    transition: right 0.5s ease; /* Añade una transición al deslizar */
+}
+
+/* Botón vertical en el borde derecho stá*/
+.toggle-button {
+    position: fixed;
+    top: 20%;
+    right: 0; /* Posición inicial del botón en el borde derecho */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width: 45px; /* Ancho del botón en vertical */
+    height: 285px; /* Altura del botón */
+    cursor: pointer;
+    border-radius: 8px 0 0 8px;
+    transition: right 0.5s ease, background-color 0.5s ease; /* Transición para el botón */
+    writing-mode: vertical-rl; /* Coloca el texto en vertical */
+    text-orientation: upright;
+    z-index: 1100; /* Asegura que el botón esté por encima del panel */
+}
+
+/* Cambio cuando el panel e abierto */
+.latest-tips-container.open {
+    right: 0; /* Muestra el panel dentro de la pantalla */
+}
+
+/* Mueve el botón junto con el panel cuando está abierto */
+.latest-tips-container.open + .toggle-button {
+    right: 300px; /* Desplaza el botón hacia la izquierda junto con el panel */
+}
+
+/* Ocultar solo el contenido, no el botón */
+.latest-tips {
+    transition: left 0.5s ease;
+}
+
+.latest-tips-container.open .latest-tips {
+    display: block; /* Muestra el contenido al hacer clic en el botón */
+}
+
+
+/* ==================== Tip Content ==================== */
+.titulo-tip {
+    color: #333;
+}
+
+.texto-tip {
+    padding: 10px;
+    text-align: justify;
+}
+
+.tip-content {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333;
+    padding: 20px;
+}
+
+.card-button {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    border: 1px solid #007bff;
+}
+
+/* ==================== Social Icons ==================== */
+.social-media-div {
+    justify-content: center;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+.social-icons {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icons li {
+    display: inline-block;
+    width: 100px;
+    height: 80px;
+}
+
+.social-icons li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+/* ==================== Responsividad ==================== */
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .sidebar {
+        position: fixed;
+        width: 250px;
+        transform: translateX(-100%);
+        display: block;
+        height: 100%;
+        background-color: #f8f9fa;
+        z-index: 1000;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card-hover-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .toggle-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .latest-tips-container {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .social-media-div {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .cards-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
